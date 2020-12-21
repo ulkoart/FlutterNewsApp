@@ -29,11 +29,11 @@ class _ArticleDetailsState extends State<ArticleDetails> {
         ),
         body: Scaffold(
           key: _scaffoldKey,
-          body: _postCardView(),
+          body: _articleCardView(),
         ),
       );
 
-  Widget _postCardView() {
+  Widget _articleCardView() {
     return Container(
       margin: EdgeInsets.all(10.0),
       child: Column(

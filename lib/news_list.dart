@@ -66,6 +66,9 @@ class __NewsListState extends State<NewsList> {
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
         child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
           elevation: 5.0,
           child: Row(
             children: <Widget>[
