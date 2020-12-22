@@ -10,10 +10,10 @@ class NewsList extends StatefulWidget {
   final String title;
 
   @override
-  __NewsListState createState() => __NewsListState();
+  _NewsListState createState() => _NewsListState();
 }
 
-class __NewsListState extends State<NewsList> {
+class _NewsListState extends State<NewsList> {
   bool _isRequestSent = false;
   List<Article> articleList = [];
 
@@ -67,22 +67,25 @@ class __NewsListState extends State<NewsList> {
         margin: EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
         child: Card(
           shape: RoundedRectangleBorder(
+            // side: BorderSide(color: Colors.blue, width: 1.0),
             borderRadius: BorderRadius.circular(10.0),
           ),
           elevation: 5.0,
           child: Row(
             children: <Widget>[
-              Container(
-                width: 140.0,
-                child: article.urlToImage != null
-                    ? Image.network(
-                        article.urlToImage,
-                        fit: BoxFit.cover,
-                      )
-                    : Container(
-                        child: Icon(Icons.image, size: 52,),
-                      ),
-              ),
+              Container(width: 140.0,
+                  child: article.urlToImage != null
+                      ? Image.network(
+                          article.urlToImage,
+                          fit: BoxFit.cover,
+                        )
+                      : Container(
+                          child: Icon(
+                            Icons.image,
+                            size: 52,
+                          ),
+                        ),
+                  ),
               Expanded(
                   child: Container(
                 margin: EdgeInsets.all(5.0),
@@ -105,3 +108,37 @@ class __NewsListState extends State<NewsList> {
             builder: (BuildContext context) => new ArticleDetails(article)));
   }
 }
+
+
+
+
+// class TestWidget extends StatefulWidget {
+//   TestWidget({Key key, this.article}) : super(key: key);
+//
+//   final Article article;
+//
+//   @override
+//   _TestWidgetState createState() => _TestWidgetState();
+// }
+//
+// class _TestWidgetState extends State<TestWidget> {
+//   @override
+//   Widget build(BuildContext context) {
+//     print(widget.article);
+//     return Text('123');
+//   }
+// }
+
+
+
+// class TestWidget extends StatelessWidget {
+//   TestWidget({Key key, this.article}) : super(key: key);
+//
+//   final Article article;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     print(article);
+//     return Text('data');
+//   }
+// }
