@@ -22,7 +22,7 @@ class _ArticleDetailsState extends State<ArticleDetails> {
   Widget build(BuildContext context) => new Scaffold(
         appBar: AppBar(
           title: Text(
-            article.title,
+            article.source.name,
             style: TextStyle(fontSize: 16.0),
             overflow: TextOverflow.fade,
           ),
