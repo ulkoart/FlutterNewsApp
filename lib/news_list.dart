@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'article.dart';
+import 'models/article.dart';
 import 'article_details.dart';
+import 'article_item.dart';
 
 class NewsList extends StatefulWidget {
   NewsList({Key key, this.title}) : super(key: key);
@@ -36,7 +37,9 @@ class _NewsListState extends State<NewsList> {
                     itemCount: articleList.length,
                     scrollDirection: Axis.vertical,
                     itemBuilder: (BuildContext context, int index) {
-                      return _getArticleWidgets(index);
+                      return ArticleItem(
+                          article:articleList[index]
+                      );
                     }),
               ),
       ),
@@ -57,88 +60,54 @@ class _NewsListState extends State<NewsList> {
     setState(() => _isRequestSent = true);
   }
 
-  Widget _getArticleWidgets(int index) {
-    var article = articleList[index];
-    return GestureDetector(
-      onTap: () {
-        openDetailsUI(article);
-      },
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
-        child: Card(
-          shape: RoundedRectangleBorder(
-            // side: BorderSide(color: Colors.blue, width: 1.0),
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          elevation: 5.0,
-          child: Row(
-            children: <Widget>[
-              Container(width: 140.0,
-                  child: article.urlToImage != null
-                      ? Image.network(
-                          article.urlToImage,
-                          fit: BoxFit.cover,
-                        )
-                      : Container(
-                          child: Icon(
-                            Icons.image,
-                            size: 52,
-                          ),
-                        ),
-                  ),
-              Expanded(
-                  child: Container(
-                margin: EdgeInsets.all(5.0),
-                child: Text(
-                  article.title,
-                  style: TextStyle(color: Colors.black, fontSize: 12.0),
-                ),
-              )),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  openDetailsUI(Article article) {
-    Navigator.push(
-        context,
-        new MaterialPageRoute(
-            builder: (BuildContext context) => new ArticleDetails(article)));
-  }
+  // Widget _getArticleWidgets(int index) {
+  //   var article = articleList[index];
+  //   return GestureDetector(
+  //     onTap: () {
+  //       openDetailsUI(article);
+  //     },
+  //     child: Container(
+  //       margin: EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
+  //       child: Card(
+  //         shape: RoundedRectangleBorder(
+  //           // side: BorderSide(color: Colors.blue, width: 1.0),
+  //           borderRadius: BorderRadius.circular(0.0),
+  //         ),
+  //         elevation: 5.0,
+  //         child: Row(
+  //           children: <Widget>[
+  //             Container(width: 140.0,
+  //                 child: article.urlToImage != null
+  //                     ? Image.network(
+  //                         article.urlToImage,
+  //                         fit: BoxFit.cover,
+  //                       )
+  //                     : Container(
+  //                         child: Icon(
+  //                           Icons.image,
+  //                           size: 52,
+  //                         ),
+  //                       ),
+  //                 ),
+  //             Expanded(
+  //                 child: Container(
+  //               margin: EdgeInsets.all(5.0),
+  //               child: Text(
+  //                 article.title,
+  //                 style: TextStyle(color: Colors.black, fontSize: 12.0),
+  //               ),
+  //             )),
+  //           ],
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
+  //
+  // openDetailsUI(Article article) {
+  //   Navigator.push(
+  //       context,
+  //       new MaterialPageRoute(
+  //           builder: (BuildContext context) => new ArticleDetails(article)));
+  // }
 }
-
-
-
-
-// class TestWidget extends StatefulWidget {
-//   TestWidget({Key key, this.article}) : super(key: key);
-//
-//   final Article article;
-//
-//   @override
-//   _TestWidgetState createState() => _TestWidgetState();
-// }
-//
-// class _TestWidgetState extends State<TestWidget> {
-//   @override
-//   Widget build(BuildContext context) {
-//     print(widget.article);
-//     return Text('123');
-//   }
-// }
-
-
-
-// class TestWidget extends StatelessWidget {
-//   TestWidget({Key key, this.article}) : super(key: key);
-//
-//   final Article article;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     print(article);
-//     return Text('data');
-//   }
-// }
