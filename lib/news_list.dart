@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'models/article.dart';
 import 'article_details.dart';
 import 'article_item.dart';
+import 'drawer_list.dart';
 
 class NewsList extends StatefulWidget {
   NewsList({Key key, this.title}) : super(key: key);
@@ -43,6 +44,11 @@ class _NewsListState extends State<NewsList> {
                     }),
               ),
       ),
+    drawer: Drawer(
+    child: ListView(children: <Widget>[
+      DrawerMenuList(),
+    ])
+    )
     );
   }
 
